@@ -1,10 +1,12 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"math"
 	"os"
 	"path/filepath"
+	"strings"
 )
 
 //DirSize: Returns the size of the directory passed in as the path parameter or an error.
@@ -67,4 +69,35 @@ func SizeMsg(mbSize float64) {
 	} else {
 		log.Printf("Successfully freed up %.1f MB.", mbSize)
 	}
+}
+
+//Gets the size of the latest iOS version in the DeviceSupport directory
+func DeviceSupportLatestVerDirSize() int64 {
+	d, err := os.Open(DeviceSupport())
+	if err != nil {
+		return 0
+	}
+	defer d.Close()
+
+	names, err := d.Readdirnames(-1)
+	if err != nil {
+		return 0
+	}
+
+	latest, err := getLatestVer(DeviceSupport())
+	if err != nil {
+		return 0
+	}
+
+	for _, name := range names {
+		if latest != nil && strings.Split(name, " ")[0] == latest.Original() {
+			latestDir := fmt.Sprintf("%s/%s", DeviceSupport(), name)
+			latestSize, err := DirSize(latestDir)
+			if err != nil {
+				return 0
+			}
+			return latestSize
+		}
+	}
+	return 0
 }

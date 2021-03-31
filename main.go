@@ -23,11 +23,17 @@ var red = color.New(color.FgRed).Add(color.Bold).SprintFunc()
 var green = color.New(color.FgGreen).Add(color.Bold).SprintFunc()
 
 func main() {
-	fmt.Println(SizeInMB(892145714))
 	_, err := flags.Parse(&opts)
 
+	//Couldn't parse flags
 	if err != nil {
 		panic(err)
+	}
+
+	//Xcode not installed
+	xcInstalled, error := exists(xcodeDir())
+	if error != nil || !xcInstalled {
+		panic("Xcode is not installed!")
 	}
 
 	//No flags provided error
@@ -68,7 +74,8 @@ func main() {
 		CleanDirContents(DerivedData())
 	case "device":
 		size, _ := DirSize(DeviceSupport())
-		sizeMb := SizeInMB(size)
+		realSize := size - DeviceSupportLatestVerDirSize()
+		sizeMb := SizeInMB(realSize)
 		defer SizeMsg(sizeMb)
 		CleanDirContents(DeviceSupport())
 	case "watch":

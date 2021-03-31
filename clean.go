@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"os"
+	"os/exec"
 	"path/filepath"
 	"strings"
 )
@@ -11,6 +12,11 @@ import (
 func Purge() {
 	log.Printf("%s", red("Purging started..."))
 	log.Println("Archives and the last installed iOS version in iOS DeviceSupport won't be deleted.")
+
+	//close simulators
+	cmd := exec.Command("killall", "Simulator")
+	cmd.Start()
+
 	var dirSizes int64 = 0
 	for _, dir := range AllDirectories() {
 		if dir == Archives() {
@@ -26,7 +32,7 @@ func Purge() {
 			log.Println(err)
 		}
 	}
-
+	dirSizes = dirSizes - DeviceSupportLatestVerDirSize()
 	totalMB := SizeInMB(dirSizes)
 	SizeMsg(totalMB)
 }
@@ -63,6 +69,13 @@ func CleanDirContents(dir string) error {
 				continue
 			}
 		}
+
+		//close simulators
+		if dir == CoreSimulator() {
+			cmd := exec.Command("killall", "Simulator")
+			cmd.Start()
+		}
+
 		//removing all files
 		err := os.RemoveAll(filepath.Join(dir, name))
 		if err != nil {

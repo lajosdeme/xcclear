@@ -22,10 +22,10 @@ func DiagnoseAll() {
 	if mbSizeTotal >= 1000.0 {
 		gbSize := RoundGB(SizeMBToGB(mbSizeTotal))
 		gbStr := fmt.Sprintf("%.2f", gbSize)
-		fmt.Printf("\n%s: %s %s \n", blue("Total:"), addPadding("Total:"), red(gbStr+" GB"))
+		fmt.Printf("\n%s %s %s \n", blue("Total:"), addPadding("Total:"), red(gbStr+" GB"))
 	} else {
 		mbStr := fmt.Sprintf("%.1f", mbSizeTotal)
-		fmt.Printf("%s: %s %s \n", blue("Total:"), addPadding("Total:"), green(mbStr+" MB"))
+		fmt.Printf("%s %s %s \n", blue("Total:"), addPadding("Total:"), green(mbStr+" MB"))
 	}
 	fmt.Printf("\nType %s or %s to clear everything. Archives and the last installed iOS version in iOS DeviceSupport won't be deleted.", red("xcclear -p"), red("xcclear --purge"))
 }
