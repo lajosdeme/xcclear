@@ -25,26 +25,42 @@ func DirSize(path string) (int64, error) {
 
 //SizeInMB: Converts bytes to megabytes.
 func SizeInMB(byteSize int64) float64 {
+	if byteSize < 0 {
+		return 0
+	}
 	return float64(byteSize) / 1000.0 / 1000.0
 }
 
 //SizeInGB: Converts bytes to gigabytes.
 func SizeInGB(byteSize int64) float64 {
+	if byteSize < 0 {
+		return 0
+	}
 	return float64(byteSize) / 1000.0 / 1000.0 / 1000.0
 }
 
 //SizeMBToGB: Converts megabytes to gigabytes.
 func SizeMBToGB(mbSize float64) float64 {
+	if mbSize < 0 {
+		return 0
+	}
 	return mbSize / 1000.0
 }
 
 //RoundGB: Rounds gigabyte size to two digits.
 func RoundGB(gbSize float64) float64 {
+	if gbSize < 0 {
+		return 0
+	}
 	return math.Round(gbSize*100) / 100
 }
 
 //SizeMsg: Outputs message describing the size of space cleaned.
 func SizeMsg(mbSize float64) {
+	if mbSize < 0 {
+		log.Printf("Successfully freed up %d MB.", 0)
+		return
+	}
 	if mbSize >= 1000.0 {
 		gbSize := RoundGB(SizeMBToGB(mbSize))
 		log.Printf("Successfully freed up %.2f GB.", gbSize)

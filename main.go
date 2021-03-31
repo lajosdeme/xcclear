@@ -23,6 +23,7 @@ var red = color.New(color.FgRed).Add(color.Bold).SprintFunc()
 var green = color.New(color.FgGreen).Add(color.Bold).SprintFunc()
 
 func main() {
+	fmt.Println(SizeInMB(892145714))
 	_, err := flags.Parse(&opts)
 
 	if err != nil {

@@ -35,6 +35,13 @@ func getLatestVer(dir string) (*semver.Version, error) {
 		return nil, err
 	}
 
+	latest := latestVer(names)
+
+	return latest, nil
+}
+
+//latestVer: Find the latest semantic version in an array of versions
+func latestVer(names []string) *semver.Version {
 	//convert names to semver
 	//get latest version
 	var latest *semver.Version
@@ -49,8 +56,7 @@ func getLatestVer(dir string) (*semver.Version, error) {
 			latest = ver
 		}
 	}
-
-	return latest, nil
+	return latest
 }
 
 //Asks user for confirmation before proceeding.
