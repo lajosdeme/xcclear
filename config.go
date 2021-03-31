@@ -17,7 +17,7 @@ func DerivedData() string {
 }
 
 func Archives() string {
-	return xcodeDir() + "Archives/testArc"
+	return xcodeDir() + "Archives"
 }
 
 func DeviceSupport() string {
