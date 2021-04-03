@@ -4,7 +4,7 @@ Say hello to a few extra gigabytes of space on your Mac with xcclear, a simple a
 
 ## Installation
 
-    brew install xcclear
+    brew install lajosdeme/utils/xcclear
     
 ## Screenshots
 Run ```xcclear -d``` to diagnose your storage:  
