@@ -49,7 +49,7 @@ func main() {
 
 	//Version
 	if opts.Version {
-		fmt.Println("1.0.0")
+		fmt.Println("1.0.1")
 		os.Exit(0)
 	}
 

@@ -26,11 +26,7 @@ func Purge() {
 		size, _ := DirSize(dir)
 		dirSizes = dirSizes + size
 
-		err := CleanDirContents(dir)
-		if err != nil {
-			log.Printf("Error cleaning %s", dir)
-			log.Println(err)
-		}
+		CleanDirContents(dir)
 	}
 	dirSizes = dirSizes - DeviceSupportLatestVerDirSize()
 	totalMB := SizeInMB(dirSizes)
