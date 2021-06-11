@@ -23,7 +23,7 @@ flag                       |   type    | description
 -------------------------- | --------- | ------------------------------------------
 `-d/--diagnose`            | `bool`    | Diagnose the total space occupied by derived data, caches and other XCode related files.<br>
 `-p/--purge`               | `bool`    | Clean all caches/unnecessary files.  
-`-c/--clear`               | `string`  | Clean only the specified directories.<br>Options can be:<br> - `derived`: Derived Data. - `device`: iOS DeviceSupport (The latest iOS version will be kept.)<br> - `watch`: watchOS DeviceSupport<br> - `simulator`: 'CoreSimulator'<br> - `cache`: Xcode caches located at ```~/Library/Caches/com.apple.dt.Xcode```<br> - `archives`: Archives
+`-c/--clear`               | `string`  | Clean only the specified directories.<br>Options can be:<br> - `derived`: Derived Data.<br> - `device`: iOS DeviceSupport (The latest iOS version will be kept.)<br> - `watch`: watchOS DeviceSupport<br> - `simulator`: 'CoreSimulator'<br> - `cache`: Xcode caches located at ```~/Library/Caches/com.apple.dt.Xcode```<br> - `archives`: Archives
 `-v/--version`             | `bool`    | Get the current version.
 
 ## Development
